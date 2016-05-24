@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="businessLayer.MainWindowController">
+   <center>
+      <GridPane fx:id="gameBoard" alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <padding>
+            <Insets bottom="10.0" left="12.5" right="12.5" top="10.0" />
+         </padding>
+      </GridPane>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" text="Current player is" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Century" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentPlayerLabel" text="RED" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="Eras Medium ITC" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="7.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="mainWindowSaveExitButton" mnemonicParsing="false" onAction="#mainWindowButtonsClicked" text="Save and Exit">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainWindowExitButton" mnemonicParsing="false" onAction="#mainWindowButtonsClicked" text="Just Exit">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </HBox>
+   </top>
+   <bottom>
+      <VBox>
+
+         <children>
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+               <Button fx:id="column1Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="12.5" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column2Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column3Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column4Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column5Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column6Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="1.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="column7Button" mnemonicParsing="false" onAction="#mainWindowAddButtonClicked" prefWidth="125.0" text="PUSH">
+                  <HBox.margin>
+                     <Insets bottom="10.0" left="1.0" right="12.5" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="Berlin Sans FB" size="15.0" />
+                  </font>
+               </Button>
+               </children>
+      </HBox>
+            <HBox>
+               <children>
+                  <Button fx:id="column1PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="12.5" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column2PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column3PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column4PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column5PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column6PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="1.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="column7PopButton" mnemonicParsing="false" onAction="#popButtonClicked" prefWidth="125.0" text="POP">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="1.0" right="12.5" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+
+      </VBox>
+   </bottom>
+</BorderPane>

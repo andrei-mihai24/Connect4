@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="businessLayer.StartWindowController">
+    <children>
+        <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#newGameClicked" text="New Game" textAlignment="CENTER">
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         <font>
+            <Font name="Ebrima" size="24.0" />
+         </font>
+        </Button>
+        <Button alignment="CENTER" mnemonicParsing="false" text="Load Saved Game" fx:id="loadGameButton" onAction="#loadGameButtonClicked">
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         <font>
+            <Font name="Ebrima" size="24.0" />
+         </font>
+        </Button>
+        <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit">
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         <font>
+            <Font size="24.0" />
+         </font>
+        </Button>
+    </children>
+</VBox>
