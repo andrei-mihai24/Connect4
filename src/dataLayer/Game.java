@@ -2,10 +2,12 @@ package dataLayer;
 
 import dataLayer.Constants;
 
+import java.io.Serializable;
+
 /**
  * Created by Andrei on 20.05.2016.
  */
-public class Game
+public class Game implements Serializable
 {
     private byte rowOfLastAddedToken;
     private byte playerWhoWon;

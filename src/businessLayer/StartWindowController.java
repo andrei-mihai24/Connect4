@@ -1,18 +1,15 @@
 package businessLayer;
 
+import dataLayer.GameSerialization;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by Andrei on 20.05.2016.
@@ -26,7 +23,7 @@ public class StartWindowController
     public Button exitButton;
 
     private boolean newGame = true;
-    private boolean savedGameExists = false;
+    private Integer gameToLoad;
 
     /**
      * Method executed when the EXIT button on the start window is clicked.
@@ -55,11 +52,24 @@ public class StartWindowController
      */
     public void loadGameButtonClicked(ActionEvent event)
     {
-        if (savedGameExists)
+        /*if (GameSerialization.getNumberOfSavedGames() != 0)
         {
             newGame = false;
             Stage window = (Stage) loadGameButton.getScene().getWindow();
             forwardToNewWidow(window, "/presentationLayer/mainWindow.fxml");
+        } else
+            NewAlert.display("Warning", "Could not load saved game", "There is no saved game. You have to start a new game!");*/
+
+        if (GameSerialization.getNumberOfSavedGames() != 0)
+        {
+            ChooseSavedGame.display();
+            if (ChooseSavedGame.getChosenGame() != null)
+            {
+                newGame = false;
+                gameToLoad = ChooseSavedGame.getChosenGame();
+                Stage window = (Stage) loadGameButton.getScene().getWindow();
+                forwardToNewWidow(window, "/presentationLayer/mainWindow.fxml");
+            }
         } else
             NewAlert.display("Warning", "Could not load saved game", "There is no saved game. You have to start a new game!");
     }
@@ -72,7 +82,7 @@ public class StartWindowController
             Parent root = loader.load();
 
             MainWindowController controller = loader.<MainWindowController>getController();
-            controller.initialize(newGame);
+            controller.initialize(newGame, gameToLoad);
 
             window.setResizable(false);
             window.setScene(new Scene(root, 900, 700));
@@ -81,10 +91,5 @@ public class StartWindowController
         {
             exception.printStackTrace();
         }
-    }
-
-    public void setSavedGameExists(boolean savedGameExists)
-    {
-        this.savedGameExists = savedGameExists;
     }
 }

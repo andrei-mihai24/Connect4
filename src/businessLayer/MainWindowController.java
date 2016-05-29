@@ -1,8 +1,6 @@
 package businessLayer;
 
-import dataLayer.Constants;
-import dataLayer.Game;
-import dataLayer.SavedGameSingleton;
+import dataLayer.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,35 +39,15 @@ public class MainWindowController
     public GridPane gameBoard;
 
     private Game currentGame;
-    private boolean saveButtonClicked;
 
     public void mainWindowButtonsClicked(ActionEvent event)
     {
-        if (event.getSource() == mainWindowExitButton)
+        if (event.getSource() == mainWindowExitButton) // Just Save Button clicked
+            forwardToStartWindow((Stage) mainWindowExitButton.getScene().getWindow());
+        else // Save & Exit Button clicked
         {
-            Stage stage = (Stage) mainWindowExitButton.getScene().getWindow();
-            stage.close();
-        } else
-        {
-            try
-            {
-                saveButtonClicked = true;
-                SavedGameSingleton.getInstance().saveGame(currentGame);
-                Stage stage = (Stage) mainWindowSaveExitButton.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentationLayer/startWindow.fxml"));
-                Parent root = loader.load();
-
-                StartWindowController controller = loader.<StartWindowController>getController();
-                controller.setSavedGameExists(saveButtonClicked);
-
-                stage.setTitle("Connect Four");
-                stage.setScene(new Scene(root, 400, 400));
-                stage.setResizable(false);
-                stage.show();
-            } catch (IOException exception)
-            {
-                exception.printStackTrace();
-            }
+            GameSerialization.saveGame(currentGame);
+            forwardToStartWindow((Stage) mainWindowSaveExitButton.getScene().getWindow());
         }
     }
 
@@ -102,15 +80,15 @@ public class MainWindowController
                 title = "Warning Message";
                 header = "Oops, no more space...";
                 content = "Your token could not be added, because the column you chose is already full!";
-                NewAlert.display(title,header,content);
+                NewAlert.display(title, header, content);
                 break;
             case Constants.GAME_OVER:
                 addToken(column, currentGame.getRowOfLastAddedToken(), activePlayer);
                 title = "Game Over";
                 header = "Player " + currentGame.getPlayerWhoWon() + " has won!";
                 content = "CONGRATULATIONS";
-                NewAlert.display(title,header,content);
-                forwardToStartWindow();
+                NewAlert.display(title, header, content);
+                forwardToStartWindow((Stage) mainWindowExitButton.getScene().getWindow());
                 break;
             case Constants.TOKEN_ADDED_GAME_NOT_OVER:
                 addToken(column, currentGame.getRowOfLastAddedToken(), activePlayer);
@@ -161,8 +139,8 @@ public class MainWindowController
                 title = "Game Over";
                 header = "Player " + currentGame.getPlayerWhoWon() + " has won!";
                 content = "CONGRATULATIONS";
-                NewAlert.display(title,header,content);
-                forwardToStartWindow();
+                NewAlert.display(title, header, content);
+                forwardToStartWindow((Stage) mainWindowExitButton.getScene().getWindow());
                 break;
             case Constants.TOKEN_REMOVED_GAME_NOT_OVER:
                 moveTokensAfterPop(column);
@@ -172,7 +150,7 @@ public class MainWindowController
                 title = "Warning Message";
                 header = "WTF";
                 content = "What are you trying to do mate? You can not do that. Read the rules!";
-                NewAlert.display(title,header,content);
+                NewAlert.display(title, header, content);
                 break;
         }
     }
@@ -199,16 +177,15 @@ public class MainWindowController
         }
     }
 
-    private void forwardToStartWindow()
+    private void forwardToStartWindow(Stage window)
     {
-        Stage window;
-        Parent root;
-        window = (Stage) mainWindowExitButton.getScene().getWindow();
         try
         {
+            Parent root;
             root = FXMLLoader.load(getClass().getResource("/presentationLayer/startWindow.fxml"));
             window.setTitle("Connect Four");
             window.setScene(new Scene(root, 400, 400));
+            window.setResizable(false);
             window.show();
         } catch (IOException exception)
         {
@@ -216,16 +193,15 @@ public class MainWindowController
         }
     }
 
-    public void initialize(boolean newGame)
+    public void initialize(boolean newGame, Integer gameToLoad)
     {
-        saveButtonClicked = false;
-        if (newGame)
+        if (GameSerialization.getNumberOfSavedGames() == 0 || newGame == true)
         {
             currentGame = new Game();
             loadBoard();
         } else
         {
-            currentGame = SavedGameSingleton.getInstance().loadGame();
+            currentGame = GameSerialization.getSavedGame(gameToLoad);
             loadBoard();
         }
         gameBoard.setStyle("-fx-background-color: " + Constants.WHITE_HEX + ";");

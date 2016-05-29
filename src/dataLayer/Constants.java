@@ -22,4 +22,7 @@ public class Constants
     public static final byte TOKEN_REMOVED_GAME_NOT_OVER = 1;
     public static final byte COLUMN_FULL = 0;
     public static final byte POP_NOT_ALLOWED = 0; // Because column is empty or because player tries to pop token that is not his own
+
+    public static final String pathToMatrixFile = "gameMatrix.txt";
+
 }
